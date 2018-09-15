@@ -1,0 +1,5 @@
+[run]
+include = algerian_library/*
+omit = *migrations*, *tests*
+plugins =
+    django_coverage_plugin

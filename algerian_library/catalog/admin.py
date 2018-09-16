@@ -3,20 +3,22 @@ from catalog.models import Author, Book, Genre, Languages, Publisher
 
 @admin.register(Author)
 class AuthorAdmin(admin.ModelAdmin):
-    pass
+    list_search = ['first_name']
+    list_display = ('last_name', 'first_name', 'birth_date', 'death_date')
 
 @admin.register(Book)
 class BookAdmin(admin.ModelAdmin):
-    pass
+    list_display = ['title', 'display_author', 'display_genre']
 
 @admin.register(Genre)
 class GenreAdmin(admin.ModelAdmin):
     pass
 
-@admin.register(admin.ModelAdmin)
+@admin.register(Languages)
 class LanguagesAdmin(admin.ModelAdmin):
     pass
 
 @admin.register(Publisher)
 class PublisherAdmin(admin.ModelAdmin):
-    pass
+    list_search = ['name']
+    list_display = ['name', 'country']

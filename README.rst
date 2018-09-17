@@ -2,6 +2,7 @@ algerian_library
 ================
 
 Juvas book's algerian library
+This is my own implemetation of the Mozilla localLibrary django tutorial + some adds and improvements using the cookiecutter
 
 .. image:: https://img.shields.io/badge/built%20with-Cookiecutter%20Django-ff69b4.svg
      :target: https://github.com/pydanny/cookiecutter-django/

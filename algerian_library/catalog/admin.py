@@ -1,5 +1,5 @@
 from django.contrib import admin
-from catalog.models import Author, Book, Genre, Languages, Publisher
+from catalog.models import Author, Book, BookInstance, Genre, Language, Publisher
 
 @admin.register(Author)
 class AuthorAdmin(admin.ModelAdmin):
@@ -10,12 +10,16 @@ class AuthorAdmin(admin.ModelAdmin):
 class BookAdmin(admin.ModelAdmin):
     list_display = ['title', 'display_author', 'display_genre']
 
+@admin.register(BookInstance)
+class BookInstanceAdmin(admin.ModelAdmin):
+    pass
+
 @admin.register(Genre)
 class GenreAdmin(admin.ModelAdmin):
     pass
 
-@admin.register(Languages)
-class LanguagesAdmin(admin.ModelAdmin):
+@admin.register(Language)
+class LanguageAdmin(admin.ModelAdmin):
     pass
 
 @admin.register(Publisher)

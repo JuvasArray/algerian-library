@@ -26,7 +26,7 @@ class Publisher(models.Model):
     def __str__(self):
         return self.name
 
-class Languages(models.Model):
+class Language(models.Model):
     name = models.CharField(max_length=200, help_text="Enter the book's natural language (e.g. English, French, Japanese etc.)")
     def __str__(self):
         return self.name
@@ -38,7 +38,7 @@ class Book(models.Model):
     publisher = models.ManyToManyField(Publisher,  related_name='published')
     isbn = models.CharField('ISBN',  max_length=13, help_text='13 Character <a href="https://www.isbn-international.org/content/what-isbn">ISBN number</a>')
     genre = models.ForeignKey(Genre, on_delete=models.CASCADE, help_text='Select a genre for this book')
-    language = models.ForeignKey(Languages, on_delete=models.CASCADE,help_text="Select a language e.g. French, English...")
+    language = models.ForeignKey(Language, on_delete=models.CASCADE,help_text="Select a language e.g. French, English...")
 
     def display_author(self):
         return ','.join(author.first_name for author in self.author.all()[:3])
@@ -51,5 +51,12 @@ class Book(models.Model):
     def __str__(self):
         return self.name
 
+import uuid
+class BookInstance(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, help_text="unique id")
+    book = models.ForeignKey(Book, on_delete=models.SET_NULL, null=True)
+    # added_by = models.ForeignKey()
+    available_for_download = models.BooleanField(default=False)
 
-
+    def __str__(self):
+        return '{0} ({1})'.format(self.book.title, self.id)

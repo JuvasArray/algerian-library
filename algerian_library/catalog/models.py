@@ -9,7 +9,7 @@ class Author(models.Model):
     last_name = models.CharField(max_length=120)
     birth_date = models.DateField()
     death_date = models.DateField(blank=True)
-    country = models.CharField(max_length=20)
+    # country = models.CharField(max_length=20)
     gender = models.CharField(max_length=1, choices=GENDRE_CHOICES)
 
     def __str__(self):
@@ -22,7 +22,6 @@ class Genre(models.Model):
 
 class Publisher(models.Model):
     name = models.CharField(max_length=120, help_text='Enter the name of the publisher')
-    country = models.CharField(max_length=20)
     def __str__(self):
         return self.name
 
@@ -51,15 +50,3 @@ class Book(models.Model):
     def __str__(self):
         return self.name
 
-import uuid
-class BookInstance(models.Model):
-    STATUS_CHOICES = (
-            ('AV', 'available'), ('NV', 'not verified'), ('NA', 'not available')
-            )
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, help_text="unique id")
-    book = models.ForeignKey(Book, on_delete=models.SET_NULL, null=True)
-    # added_by = models.ForeignKey()
-    available_for_download = models.CharField(max_length=1, choices=STATUS_CHOICES, blank=True, default='NA')
-
-    def __str__(self):
-        return '{0} ({1})'.format(self.book.title, self.id)

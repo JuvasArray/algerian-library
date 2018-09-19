@@ -1,5 +1,5 @@
 from django.contrib import admin
-from catalog.models import Author, Book, BookInstance, Genre, Language, Publisher
+from catalog.models import Author, Book, Genre, Language, Publisher
 
 @admin.register(Author)
 class AuthorAdmin(admin.ModelAdmin):
@@ -9,10 +9,6 @@ class AuthorAdmin(admin.ModelAdmin):
 @admin.register(Book)
 class BookAdmin(admin.ModelAdmin):
     list_display = ['title', 'display_author', 'display_genre']
-
-@admin.register(BookInstance)
-class BookInstanceAdmin(admin.ModelAdmin):
-    pass
 
 @admin.register(Genre)
 class GenreAdmin(admin.ModelAdmin):
@@ -25,4 +21,4 @@ class LanguageAdmin(admin.ModelAdmin):
 @admin.register(Publisher)
 class PublisherAdmin(admin.ModelAdmin):
     list_search = ['name']
-    list_display = ['name', 'country']
+    list_display = ['name']
